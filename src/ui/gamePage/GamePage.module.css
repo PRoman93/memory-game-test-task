@@ -1,0 +1,8 @@
+.gamePage {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-image: linear-gradient(to right top, #CCCC00, #B6B600);
+}
