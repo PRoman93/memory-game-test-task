@@ -1,0 +1,24 @@
+.button {
+    display: inline-block;
+    position: relative;
+    border-radius: 50px;
+    background: #00c9b7;
+    width: 180px;
+    height: 50px;
+    color: #fff;
+    font-size: 0.97em;
+    letter-spacing: 0.094em;
+    cursor: pointer;
+    -webkit-box-shadow: 10px 10px 14px 1px rgba(00, 00, 00, 0.2);
+    box-shadow: 10px 10px 14px 1px rgba(00, 00, 00, 0.2);
+    text-align: center;
+    text-decoration: none;
+    transition: 0.3s;
+    margin-bottom: 15px;
+    outline: none;
+}
+
+.button:active, .button:hover, .button:focus {
+    opacity: 0.8;
+    /*outline: none;*/
+}

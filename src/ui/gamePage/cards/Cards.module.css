@@ -11,6 +11,12 @@
 .loading {
     pointer-events: none;
 }
+.contentWrapper{
+    text-align: center;
+}
+.header{
+    color: #00c9b7;
+}
 @media screen and (max-width: 767px){
     .cards {
         width: 316px;

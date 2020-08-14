@@ -4,5 +4,15 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-image: linear-gradient(to right top, #CCCC00, #B6B600);
+    background-image: url("../../assets/images/IMG_2717.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    /*background-image: linear-gradient(to right top, #000033, #6600FF);*/
+}
+.counter {
+    margin-top: 50px;
+    font-size: 30px;
+    font-weight: bold;
+    color: #00c9b7;
 }
