@@ -1,5 +1,4 @@
 export const FIRST_CARD_SHOW = 'playReducer/FIRST-CARD-SHOW'
-export const GET_CARDS = 'playReducer/GET-CARDS'
 export const MATCH_CARDS = 'playReducer/MATCH-CARDS'
 export const LOADING_IN_PROCESS = 'playReducer/LOADING-IN-PROCESS'
 export const VICTORY_COMPLETE = 'playReducer/VICTORY-COMPLETE'

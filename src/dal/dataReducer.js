@@ -106,7 +106,8 @@ const playReducer = (state = initialState, action) => {
                 ...state,
                 cards: randomCardPosition
             }
-        default: return state
+        default:
+            return state
 
     }
 }
