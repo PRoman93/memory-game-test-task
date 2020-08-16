@@ -4,7 +4,7 @@ import {
     MATCH_CARDS,
     SET_RANDOM_POSITION_FOR_CARDS,
     VICTORY_COMPLETE
-} from "../assets/constants";
+} from "../assets/constants/constants";
 
 import img_1 from '../assets/images/austria.svg'
 import img_2 from '../assets/images/belarus.svg'

@@ -4,6 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import Button from "../../common/Button";
 import styles from './Cards.module.css'
 import {shufflingCardsPosition, victoryCase} from "../../../dal/dataReducer";
+import winSound from '../../../assets/sounds/Sound_20947.mp3'
 
 const CardsContainer = (props) => {
 
@@ -18,8 +19,10 @@ const CardsContainer = (props) => {
     const {cards, loading} = useSelector(state => state.reducer)
 
 
+
     if (cards.every(card => card.isSelected) && !start) {
         return <div className={styles.contentWrapper}>
+            <audio src={winSound} autoPlay={true}/>
             <h2 className={styles.header}>You won!</h2><Button onClick={onButtonClick} text={'play again'}/>
         </div>
     } else {
