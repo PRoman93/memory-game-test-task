@@ -1,10 +1,15 @@
 import React from "react";
 import Card from "./Card";
 import {useDispatch} from "react-redux";
-import {showCard} from "../../../../dal/dataReducer";
+import {showCard} from "../../../../dal/cardsReducer";
 import click from '../../../../assets/sounds/click.mp3'
+import {cardType} from "../../../../types/cardsReducerTypes";
 
-const CardContainer = (props) => {
+type PropType = {
+    card:cardType
+    key:number
+}
+const CardContainer: React.FC<PropType> = (props) => {
 
     const dispatch = useDispatch()
 

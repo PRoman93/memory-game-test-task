@@ -14,8 +14,19 @@ import img_5 from '../assets/images/britain.svg'
 import img_6 from '../assets/images/france.svg'
 import img_7 from '../assets/images/spain.svg'
 import img_8 from '../assets/images/japan.svg'
+import {
+    cardType,
+    compareCardsActionType,
+    initialStateType,
+    isLoadingActionType,
+    openFirstCardActionType,
+    shufflingCardsPositionActionType,
+    victoryCaseActionType
+} from "../types/cardsReducerTypes";
+import {AppStateType} from "./store";
+import {ThunkAction, ThunkDispatch} from "redux-thunk";
 
-const initialState = {
+const initialState: initialStateType = {
     cards: [
         {id: 0, img: img_1, title: 'one', isActive: false, isSelected: false},
         {id: 1, img: img_1, title: 'one', isActive: false, isSelected: false},
@@ -37,12 +48,12 @@ const initialState = {
     countClick: 1,
     loading: false
 }
-const playReducer = (state = initialState, action) => {
+const cardsReducer = (state: initialStateType = initialState, action: ActionType): initialStateType => {
     switch (action.type) {
         case FIRST_CARD_SHOW :
             let activeCard = [...state.cards]
             if (!action.card.isActive)
-                activeCard = activeCard.map(card => {
+                activeCard = activeCard.map((card: cardType) => {
                     if (card.id === action.card.id) {
                         return {...card, isActive: true}
                     } else {
@@ -53,7 +64,7 @@ const playReducer = (state = initialState, action) => {
                 ...state, cards: activeCard
             }
         case MATCH_CARDS:
-            let showedCards = state.cards.filter(card => card.isActive)
+            let showedCards = state.cards.filter((card: cardType) => card.isActive)
             let newCards = [...state.cards]
             let counterValue = state.countClick
             if (showedCards[0].title === showedCards[1].title && showedCards[0].id !== showedCards[1].id) {
@@ -67,7 +78,7 @@ const playReducer = (state = initialState, action) => {
                 })
             } else {
                 counterValue += 1
-                newCards = newCards.map(card => {
+                newCards = newCards.map((card: cardType) => {
                     return {...card, isActive: false}
                 })
             }
@@ -84,18 +95,18 @@ const playReducer = (state = initialState, action) => {
         case VICTORY_COMPLETE:
             return {
                 ...state,
-                cards: state.cards.map(card => {
+                cards: state.cards.map((card: cardType) => {
                     return {
                         ...card,
                         isActive: false,
                         isSelected: false
                     }
                 }),
-                countClick: 0
+                countClick: 1
             }
         case SET_RANDOM_POSITION_FOR_CARDS:
             let randomCardPosition = [...state.cards]
-            let random = (array) => {
+            let random = (array:Array<cardType>) => {
                 for (let i = array.length - 1; i > 0; i--) {
                     let j = Math.floor(Math.random() * (i + 1));
                     [array[i], array[j]] = [array[j], array[i]];
@@ -111,15 +122,29 @@ const playReducer = (state = initialState, action) => {
 
     }
 }
-export default playReducer
+export default cardsReducer
 
-export const openFirstCard = (card) => ({type: FIRST_CARD_SHOW, card})
-export const compareCards = () => ({type: MATCH_CARDS})
-export const isLoading = () => ({type: LOADING_IN_PROCESS})
-export const victoryCase = () => ({type: VICTORY_COMPLETE})
-export const shufflingCardsPosition = () => ({type: SET_RANDOM_POSITION_FOR_CARDS})
+export const openFirstCard = (card: cardType): openFirstCardActionType => ({type: FIRST_CARD_SHOW, card})
+export const compareCards = (): compareCardsActionType => ({type: MATCH_CARDS})
+export const isLoading = (): isLoadingActionType => ({type: LOADING_IN_PROCESS})
+export const victoryCase = (): victoryCaseActionType => ({type: VICTORY_COMPLETE})
+export const shufflingCardsPosition = (): shufflingCardsPositionActionType => ({type: SET_RANDOM_POSITION_FOR_CARDS})
 
-export const showCard = (card) => (dispatch, getState) => {
+type CardsActionType =
+    openFirstCardActionType
+    | compareCardsActionType
+    | isLoadingActionType
+    | victoryCaseActionType
+    | shufflingCardsPositionActionType
+
+type ActionType = CardsActionType
+
+
+//thunk types
+type ThunkType = ThunkAction<void, AppStateType, unknown, ActionType>
+type ThunkDispatchType = ThunkDispatch<AppStateType, unknown, ActionType>
+
+export const showCard = (card: cardType) => (dispatch: ThunkDispatchType, getState: () => AppStateType) => {
     const state = getState()
     const {cards} = state.reducer
     let showCards = cards.filter(card => card.isActive)

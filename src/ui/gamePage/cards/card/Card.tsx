@@ -1,12 +1,15 @@
 import React from 'react';
 import styles from './Card.module.css'
+import {cardType} from "../../../../types/cardsReducerTypes";
 
-const Card = (props) => {
+type PropType = {
+    card: cardType
+    openCard: () => void
+}
+const Card: React.FC<PropType> = (props) => {
 
-    // const classForCard = props.card.isSelected ? `${styles.openedCard} ${styles.card}` : styles.card
 
     const classForCard = props.card.isSelected ? `${styles.openedCard} ${styles.card}` : styles.card
-    console.log(props.card)
 
     return (
         <div className={classForCard} onClick={props.openCard}>
