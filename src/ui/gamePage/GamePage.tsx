@@ -24,9 +24,7 @@ const GamePage = (props: PropType) => {
     }
     return (
         <>
-            <div className={styles.gamePage}><CardsContainer
-                // onStartClick={onButtonClick} probably unused
-            />
+            <div className={styles.gamePage}><CardsContainer/>
                 {props.cards.every(card => card.isSelected)
                     ? ''
                     : <div className={styles.counter}>

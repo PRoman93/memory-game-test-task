@@ -15,6 +15,7 @@ const CardContainer: React.FC<PropType> = (props) => {
 
     const openCard = () => {
         dispatch(showCard(props.card))
+        // sound of click when every card picks
         new Audio(click).play()
     }
     return (

@@ -22,6 +22,7 @@ const CardsContainer = () => {
 
     if (cards.every(card => card.isSelected) && !start) {
         return <div className={styles.contentWrapper}>
+            {/*sound of applause after last pair of cards open*/}
             <audio src={winSound} autoPlay={true}/>
             <h2 className={styles.header}>You won!</h2><Button onClick={onButtonClick} text={'play again'}/>
         </div>

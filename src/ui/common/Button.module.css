@@ -20,5 +20,4 @@
 
 .button:active, .button:hover, .button:focus {
     opacity: 0.8;
-    /*outline: none;*/
 }

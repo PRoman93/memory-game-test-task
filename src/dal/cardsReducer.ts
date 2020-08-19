@@ -106,7 +106,7 @@ const cardsReducer = (state: initialStateType = initialState, action: ActionType
             }
         case SET_RANDOM_POSITION_FOR_CARDS:
             let randomCardPosition = [...state.cards]
-            let random = (array:Array<cardType>) => {
+            let random = (array: Array<cardType>) => {
                 for (let i = array.length - 1; i > 0; i--) {
                     let j = Math.floor(Math.random() * (i + 1));
                     [array[i], array[j]] = [array[j], array[i]];
@@ -124,12 +124,14 @@ const cardsReducer = (state: initialStateType = initialState, action: ActionType
 }
 export default cardsReducer
 
+// actions
 export const openFirstCard = (card: cardType): openFirstCardActionType => ({type: FIRST_CARD_SHOW, card})
 export const compareCards = (): compareCardsActionType => ({type: MATCH_CARDS})
 export const isLoading = (): isLoadingActionType => ({type: LOADING_IN_PROCESS})
 export const victoryCase = (): victoryCaseActionType => ({type: VICTORY_COMPLETE})
 export const shufflingCardsPosition = (): shufflingCardsPositionActionType => ({type: SET_RANDOM_POSITION_FOR_CARDS})
 
+// types to actions
 type CardsActionType =
     openFirstCardActionType
     | compareCardsActionType
@@ -144,16 +146,22 @@ type ActionType = CardsActionType
 type ThunkType = ThunkAction<void, AppStateType, unknown, ActionType>
 type ThunkDispatchType = ThunkDispatch<AppStateType, unknown, ActionType>
 
+// thunk
 export const showCard = (card: cardType) => (dispatch: ThunkDispatchType, getState: () => AppStateType) => {
+    /*getting cards array from state and filtering cards with prop isShow===true*/
     const state = getState()
     const {cards} = state.reducer
     let showCards = cards.filter(card => card.isActive)
 
+    /*show the active card if it has not been shown or clicked*/
     if (!card.isSelected && !card.isActive) {
         dispatch(openFirstCard(card))
     }
+    /*compare two cards if the first card is showed and second is not showed and guessed*/
     if (showCards.length !== 0 && !card.isSelected && !card.isActive) {
+        /*prevent click on any card while comparing is going on*/
         dispatch(isLoading())
+        /*after 1 sec delay comparing starts*/
         setTimeout(() => {
             dispatch(compareCards())
             dispatch(isLoading())

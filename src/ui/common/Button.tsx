@@ -1,7 +1,11 @@
 import React from "react";
 import styles from './Button.module.css'
 
-const Button = (props) => {
+type PropType = {
+    text:string
+    onClick:()=>void
+}
+const Button: React.FC<PropType> = (props) => {
 
     const onButtonClick = () => {
         props.onClick()

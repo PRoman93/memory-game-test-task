@@ -9,6 +9,7 @@ type PropType = {
 const Card: React.FC<PropType> = (props) => {
 
 
+    //class openedCard is active when pair of cards match to each other and then they stay transparent
     const classForCard = props.card.isSelected ? `${styles.openedCard} ${styles.card}` : styles.card
 
     return (
